@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Alaolu -Hesap Makinesi-</title>
+        <link rel="stylesheet" href="index.css">   
+    </head>
+    <body>
+        <div id="container" class="containerclass">
+            <div id="result" class="resultclass"><span id="result1" class="result1class"></span></div>
+            <div id="sonuc" class="sonucclass"><span id="sonuc1" class="sonuc1class"></span></div>
+
+          <div class="üst1">
+            <button id="c" class="cclass" onclick="cclick()">C</button>
+            <button id="silme" class="deleteclass" onclick="silmeclick()"><span class="okisareti">←</span></button>
+            <button id="changeop" class="changeopclass" onclick="changeopclick()">+/-</button>
+            <button id="bölme" class="bölmeclass" value="/" onclick="bölmeclick()">/</button>
+          </div> 
+          <div class="üst2">
+            <button id="yedi" class="yediclass" value="7" onclick="yediclick()">7</button>
+            <button id="sekiz" class="sekizclass" value="8" onclick="sekizclick()">8</button>
+            <button id="dokuz" class="dokuzclass" value="9" onclick="dokuzclick()">9</button>
+            <button id="carpma" class="carpmaclass" value="*" onclick="carpmaclick()">X</button>
+          </div>  
+          <div class="üst3">
+            <button id="dört" class="dörtclass" value="4" onclick="dörtclick()">4</button>
+            <button id="bes" class="besclass" value="5" onclick="besclick()">5</button>
+            <button id="alti" class="alticlass" value="6" onclick="alticlick()">6</button>
+            <button id="cikarma" class="cikarmaclass" value="-" onclick="cikarmaclick()">-</button>
+          </div>
+          <div class="üst4">
+            <button id="bir" class="birclass" value="1" onclick="birclick()">1</button>
+            <button id="iki" class="ikiclass" value="2" onclick="ikiclick()">2</button>
+            <button id="üc" class="ücclass" value="3" onclick="ücclick()">3</button>
+            <button id="toplama" class="toplamaclass" value="+" onclick="toplamaclick()">+</button>
+          </div>
+          <div class="üst5">
+            <button id="sifir" class="sifirclass" value="0" onclick="sifirclick()">0</button>
+            <button id="nokta" class="noktaclass" value="." onclick="noktaclick()">.</button>
+          </div>
+        </div>
+        <span class="alaolu">© ALAOGLU</span>
+
+        <script>
+            let result = document.getElementById("result1");
+            let sonuc = document.getElementById("sonuc1");
+            let c = document.getElementById("c");
+            let silme = document.getElementById("silme");
+            let changeop = document.getElementById("changeop");
+            let bölme = document.getElementById("bölme");
+            let yedi = document.getElementById("yedi");
+            let sekiz = document.getElementById("sekiz");
+            let dokuz = document.getElementById("dokuz");
+            let carpma = document.getElementById("carpma");
+            let dört = document.getElementById("dört");
+            let bes = document.getElementById("bes");
+            let alti = document.getElementById("alti");
+            let cikarma = document.getElementById("cikarma");
+            let bir = document.getElementById("bir");
+            let iki = document.getElementById("iki");
+            let üc = document.getElementById("üc");
+            let toplama = document.getElementById("toplama");
+            let sifir = document.getElementById("sifir");
+            let nokta = document.getElementById("nokta");
+
+            //rakamlara tıklandıgında sonuca divine işlenmesi
+            function sifirclick(){
+                result.textContent+= sifir.innerHTML;
+            }
+            function birclick(){
+                result.textContent+= bir.innerHTML;
+            }
+            function ikiclick(){
+                result.textContent+= iki.innerHTML;
+            }
+            function ücclick(){
+                result.textContent+= üc.innerHTML;
+            }
+            function dörtclick(){
+                result.textContent+= dört.innerHTML;
+            }
+            function besclick(){
+                result.textContent+= bes.innerHTML;
+            }
+            function alticlick(){
+                result.textContent+= alti.innerHTML;
+            }
+            function yediclick(){
+                result.textContent+= yedi.innerHTML;
+            }
+            function sekizclick(){
+                result.textContent+= sekiz.innerHTML;
+            }
+            function dokuzclick(){
+                result.textContent+= dokuz.innerHTML;
+            }
+            //rakamlara tıklandıgında sonuca divine işlenmesi
+            //c tıklandıgında result divinin sıfırlanması
+            function cclick(){
+                result.textContent = null;
+                sonuc.textContent= null;
+                ilkdeger=0;
+                cikarmaislemii=false;
+                carpmaislemii=false;
+                bölmeislemii=false;
+                noktakoyuldu=false;
+            }
+            //c tıklandıgında result divinin sıfırlanması
+            //delete tusunun fonksiyonu tanımlandı
+            function silmeclick(){
+                result.textContent=result.textContent.substring(0,(Number(result.textContent.length)-1));
+            }
+            //delete tusunun fonksiyonu tanımlandı
+
+
+            let cikarmaislemii=false;
+            let carpmaislemii=false;
+            bölmeislemii=false;
+
+            function cikarmaclick(){
+                
+                if(cikarmaislemii==true){
+                    sonuc.textContent-=result.textContent;
+                    result.textContent=null;
+                }
+                else{
+                    sonuc.textContent=result.textContent;
+                    result.textContent=null;
+                }
+                cikarmaislemii=true;
+                carpmaislemii=true;
+                bölmeislemii=true;
+                noktakoyuldu=false;
+            }
+            function toplamaclick(){
+                ilkdeger=Number(result.textContent);
+                sonucdeger=Number(sonuc.textContent);
+                sonuc.textContent=ilkdeger+sonucdeger;
+                result.textContent=null;
+                cikarmaislemii=true;
+                carpmaislemii=true;
+                bölmeislemii=true;
+                noktakoyuldu=false;
+                }
+
+            function carpmaclick(){
+                if(carpmaislemii==true){
+                    sonuc.textContent*=result.textContent;
+                    result.textContent=null;
+                }
+                else{
+                    sonuc.textContent=result.textContent;
+                    result.textContent=null;
+                }
+                carpmaislemii=true;
+                cikarmaislemii=true;
+                bölmeislemii=true;
+                noktakoyuldu=false;
+            }
+
+            function bölmeclick(){
+                if(bölmeislemii==true){
+                    sonuc.textContent/=result.textContent;
+                    result.textContent=null;
+                }
+                else{
+                    sonuc.textContent=result.textContent;
+                    result.textContent=null;
+                }
+                carpmaislemii=true;
+                cikarmaislemii=true;
+                bölmeislemii=true;
+                noktakoyuldu=false;
+            }
+             function changeopclick(){
+                result.textContent= Number(result.textContent)*-1;
+             }
+
+
+             let noktakoyuldu=false;
+
+             function noktaclick(){
+                 if(noktakoyuldu==false){
+                result.textContent+= nokta.innerHTML;
+                 }
+                 else{
+                     alert("HATA!");
+                 }
+                 noktakoyuldu=true;
+
+             }
+
+        </script>
+    </body>
+</html>
